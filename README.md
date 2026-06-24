@@ -4,6 +4,10 @@ CacheFlow is a production-grade URL shortener and link infrastructure designed t
 
 Every core architectural mechanism is observable through a live Architecture Dashboard that reports cache hit ratios, RabbitMQ queue depths, database connection pool utilization, and worker fleet heartbeats.
 
+### Live Demo
+* **Frontend Web Application**: [http://13.49.57.61.nip.io:3000](http://13.49.57.61.nip.io:3000)
+* **Interactive API Documentation**: [http://13.49.57.61.nip.io:8080/docs](http://13.49.57.61.nip.io:8080/docs)
+
 ---
 
 ## Architecture Overview
