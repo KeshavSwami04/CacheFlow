@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  ::selection {
+    background-color: rgba(39, 230, 166, 0.25);
+  }
+  body {
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(39, 230, 166, 0.06), transparent);
+    background-attachment: fixed;
+  }
+  :focus-visible {
+    outline: 2px solid #27e6a6;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-border rounded-xl;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-signal px-4 py-2.5
+      font-medium text-bg transition hover:bg-signal-dim active:scale-[0.98] disabled:opacity-50
+      disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-border-bright
+      bg-surface-raised px-4 py-2.5 font-medium text-ink transition hover:border-signal/40
+      hover:text-signal disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .input-field {
+    @apply w-full rounded-lg border border-border bg-bg px-3.5 py-2.5 text-sm text-ink
+      placeholder:text-faint outline-none transition focus:border-signal/60 focus:ring-1
+      focus:ring-signal/30;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-medium uppercase tracking-wide text-muted;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
