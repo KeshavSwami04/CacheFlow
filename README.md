@@ -107,10 +107,7 @@ cacheflow/
 
 ## Quickstart
 
-### Prerequisites
-* Docker and Docker Compose installed.
-
-### Execution Steps
+### Local Development
 1. Copy the template environment variables:
    ```bash
    cp .env.example .env
@@ -119,7 +116,7 @@ cacheflow/
    ```bash
    docker compose up --build -d
    ```
-3. Once running, access the services:
+3. Access the local services:
    * **Frontend Application**: `http://localhost:3000`
    * **API Load Balancer / Swagger Docs**: `http://localhost:8080/docs`
    * **RabbitMQ Management Console**: `http://localhost:15672` (User/Password: `cacheflow`/`cacheflow`)
@@ -128,4 +125,37 @@ cacheflow/
 4. Scale the workers to demonstrate horizontal scaling:
    ```bash
    docker compose up -d --scale worker=4
+   ```
+
+---
+
+## Production VPS Deployment (AWS EC2 / Always-Free VPS)
+
+To deploy the entire multi-container stack to a clean Ubuntu VPS:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/KeshavSwami04/CacheFlow.git
+   cd CacheFlow
+   ```
+
+2. **Automated Provisioning**:
+   Run the included setup script to configure 2GB swap space (essential for 1GB RAM instances to prevent OOM errors) and install Docker:
+   ```bash
+   chmod +x scripts/vps_setup.sh
+   ./scripts/vps_setup.sh
+   ```
+
+3. **Reboot the VPS**:
+   Reboot to apply Docker group permissions and auto-expand drive space if you modified the EBS volume size:
+   ```bash
+   sudo reboot
+   ```
+
+4. **Start the Stack**:
+   SSH back into the server, enter the project directory, copy the environment file, and start:
+   ```bash
+   cd CacheFlow
+   cp .env.example .env
+   docker compose up --build -d
    ```
