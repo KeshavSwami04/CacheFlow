@@ -9,8 +9,8 @@ sudo apt-get update -y
 if [ -f /swapfile ]; then
     echo "Swap file already exists. Skipping allocation."
 else
-    echo "Allocating 4GB Swap space..."
-    sudo fallocate -l 4G /swapfile
+    echo "Allocating 2GB Swap space..."
+    sudo fallocate -l 2G /swapfile
     sudo chmod 600 /swapfile
     sudo mkswap /swapfile
     sudo swapon /swapfile
