@@ -176,11 +176,6 @@ Assuming the system generates 100 million new URLs per month:
 * **Storage requirement per month**: 100 million * 150 bytes = 15 GB of raw DB data per month.
 * **Over 5 years**: 15 GB * 12 * 5 = 900 GB of storage. This easily fits on a single standard cloud volume or read replica pool.
 
-### 2. URL Space Calculations
-* CacheFlow uses a 7-character Base62 code.
-* **Total unique combinations**: 62^7 = 3.52 trillion unique URLs.
-* At a rate of 100 million URLs per month, the 7-character namespace will last for over 2,900 years before requiring expansion to 8 characters.
-
 ---
 
 ## Latency and Performance Profile
