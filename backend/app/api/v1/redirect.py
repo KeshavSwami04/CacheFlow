@@ -14,7 +14,7 @@ router = APIRouter(tags=["redirect"])
 # Short codes are base62 (alphanumeric) and aliases are alphanumeric;
 # this reserved-prefix list keeps the catch-all route from swallowing
 # real API paths like /api, /docs, /health.
-_RESERVED_PREFIXES = {"api", "docs", "redoc", "openapi.json", "health", "favicon.ico"}
+_RESERVED_PREFIXES = {"api", "docs", "redoc", "openapi.json", "health", "favicon.ico", "favicon.svg"}
 
 
 @router.get("/{code}")

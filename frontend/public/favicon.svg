@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Rounded outer border matching the CacheFlow logo mark -->
+  <rect x="0.5" y="0.5" width="23" height="23" rx="6" stroke="#27E6A6" stroke-width="1.5" stroke-opacity="0.6" fill="#0B0F14" />
+  
+  <!-- Stylized flow line -->
+  <path
+    d="M5 16 Q 9 8, 12 12 T 19 8"
+    stroke="#27E6A6"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+  
+  <!-- Pulse endpoint dot -->
+  <circle cx="19" cy="8" r="2" fill="#27E6A6" />
+</svg>
