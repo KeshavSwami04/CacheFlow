@@ -1,7 +1,7 @@
 import type { SystemMetrics } from "@/types";
 
-const NODE_W = 130;
-const NODE_H = 52;
+const NODE_W = 170;
+const NODE_H = 58;
 
 function Node({
   x,
@@ -82,27 +82,28 @@ export function SystemFlowDiagram({ metrics }: { metrics: SystemMetrics }) {
         Live topology — redirect reads hit Redis first; misses read through the PostgreSQL Read Replica. Click events publish
         to RabbitMQ and are processed asynchronously by the worker pool writing to the Primary PostgreSQL database.
       </p>
-      <svg viewBox="0 0 900 310" className="min-w-[800px]" role="img" aria-label="System request flow diagram">
+      <svg viewBox="0 0 1000 320" className="min-w-[860px]" role="img" aria-label="System request flow diagram">
         {/* Connection paths */}
-        <FlowEdge d="M 150 136 C 200 136, 210 66, 260 66" color="#27E6A6" animated dur="1.2s" />
-        <FlowEdge d="M 150 136 C 200 136, 210 206, 260 206" color="#5B8DEF" animated dur="1.8s" />
-        <FlowEdge d="M 390 206 C 450 206, 480 116, 540 116" color="#2A3744" />
-        <FlowEdge d="M 605 52 V 90" color="#F5B544" animated dur="2.0s" />
-        <FlowEdge d="M 390 206 H 540" color="#5B8DEF" animated dur="1.5s" />
-        <FlowEdge d="M 670 206 H 740" color="#27E6A6" animated dur="1.2s" />
-        <FlowEdge d="M 805 180 C 805 100, 720 26, 670 26" color="#2A3744" />
-        <FlowEdge d="M 805 232 V 270 H 670" color="#FF6B5B" />
+        <FlowEdge d="M 190 139 C 240 139, 250 69, 280 69" color="#27E6A6" animated dur="1.2s" />
+        <FlowEdge d="M 190 139 C 240 139, 250 209, 280 209" color="#5B8DEF" animated dur="1.8s" />
+        <FlowEdge d="M 450 209 C 510 209, 530 119, 570 119" color="#2A3744" />
+        <FlowEdge d="M 655 55 V 90" color="#F5B544" animated dur="2.0s" />
+        <FlowEdge d="M 450 209 H 570" color="#5B8DEF" animated dur="1.5s" />
+        <FlowEdge d="M 740 209 H 800" color="#27E6A6" animated dur="1.2s" />
+        <FlowEdge d="M 885 183 C 885 100, 780 29, 740 29" color="#2A3744" />
+        <FlowEdge d="M 885 238 V 275 H 740" color="#FF6B5B" />
 
         {/* Nodes */}
         <Node x={20} y={110} label="Client" sub="browser" />
-        <Node x={260} y={40} label="Redis Cache" sub={`hit rate ${hitPct}%`} tone="signal" />
-        <Node x={260} y={180} label="Redirect API" sub="fire-and-forget publish" tone="info" />
-        <Node x={540} y={0} label="Postgres (Primary)" sub="writes & upserts" tone="default" />
-        <Node x={540} y={90} label="Postgres (Replica)" sub="read-only queries" tone="default" />
-        <Node x={540} y={180} label="RabbitMQ" sub={`depth ${metrics.queue.queue_depth}`} tone="info" />
-        <Node x={540} y={244} label="DLQ" sub={`${metrics.queue.dlq_depth} dead-lettered`} tone={metrics.queue.dlq_depth > 0 ? "warn" : "default"} />
-        <Node x={740} y={180} label="Worker pool" sub={`${aliveWorkers} alive`} tone={aliveWorkers > 0 ? "signal" : "warn"} />
+        <Node x={280} y={40} label="Redis Cache" sub={`hit rate ${hitPct}%`} tone="signal" />
+        <Node x={280} y={180} label="Redirect API" sub="fire-and-forget publish" tone="info" />
+        <Node x={570} y={0} label="Postgres (Primary)" sub="writes & upserts" tone="default" />
+        <Node x={570} y={90} label="Postgres (Replica)" sub="read-only queries" tone="default" />
+        <Node x={570} y={180} label="RabbitMQ" sub={`depth ${metrics.queue.queue_depth}`} tone="info" />
+        <Node x={570} y={248} label="DLQ" sub={`${metrics.queue.dlq_depth} dead-lettered`} tone={metrics.queue.dlq_depth > 0 ? "warn" : "default"} />
+        <Node x={800} y={180} label="Worker pool" sub={`${aliveWorkers} alive`} tone={aliveWorkers > 0 ? "signal" : "warn"} />
       </svg>
     </div>
   );
 }
+
