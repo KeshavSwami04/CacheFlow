@@ -34,7 +34,7 @@ class Settings(BaseSettings):
     # comma-separated env value like "http://a,http://b" raises a
     # SettingsError before we ever get a chance to split it. A str field +
     # computed property sidesteps that entirely.
-    CORS_ORIGINS: str = "http://localhost:5173,http://localhost:3000"
+    CORS_ORIGINS: str = "http://localhost:5173,http://localhost:3000,http://13.49.57.61.nip.io:3000"
 
     @property
     def CORS_ORIGINS_LIST(self) -> List[str]:
@@ -112,7 +112,7 @@ class Settings(BaseSettings):
         )
 
     # --- Frontend / short URL base ---
-    SHORT_URL_BASE: str = "http://localhost:8000"
+    SHORT_URL_BASE: str = "http://13.49.57.61.nip.io:8080"
 
     # --- Observability ---
     OTEL_ENABLED: bool = False
