@@ -19,9 +19,42 @@ export function UrlRow({
   const [busy, setBusy] = useState(false);
 
   const copy = async () => {
-    await navigator.clipboard.writeText(url.short_url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    try {
+      let copySuccess = false;
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        try {
+          await navigator.clipboard.writeText(url.short_url);
+          copySuccess = true;
+        } catch (err) {
+          console.warn("navigator.clipboard.writeText failed, trying fallback...", err);
+        }
+      }
+
+      if (!copySuccess) {
+        const textArea = document.createElement("textarea");
+        textArea.value = url.short_url;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          copySuccess = document.execCommand("copy");
+        } catch (err) {
+          console.error("execCommand copy failed", err);
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+
+      if (copySuccess) {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1500);
+      }
+    } catch (err) {
+      console.error("Failed to copy link: ", err);
+    }
   };
 
   const toggleActive = async () => {
